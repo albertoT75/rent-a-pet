@@ -3,6 +3,7 @@ class PetsController < ApplicationController
 def edit
   @user = current_user
   @pet = Pet.find(params[:id])
+  authorize @pet
 end
 
 def show
@@ -11,12 +12,13 @@ def show
 end
 
 def update
-  @user = current_user
-  @pet = @user.pet.find(params[:id])
-  if @pet.update_attributes(pet_params)
+  @pet = Pet.find(params[:id])
+  authorize @pet
+  if @pet.update(pet_params)
     flash[:success] = "Pet updated!"
+    redirect_to pet_path(@pet)
   else
-    render action: :edit
+    render :edit
   end
 end
 
