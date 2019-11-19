@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only: [:show, :edit, :update]
+  before_action :set_pet, only: [:show, :edit, :update, :destroy]
 
   def new
     @pet = current_user.pets.new
