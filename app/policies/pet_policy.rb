@@ -4,12 +4,15 @@ class PetPolicy < ApplicationPolicy
       scope.all
     end
   end
-
-  def show?
+  def create?
     true
   end
 
-  def create?
+  def update?
+    record.user == user
+  end
+
+  def show?
     true
   end
 end

@@ -1,9 +1,5 @@
 class PetsController < ApplicationController
-
-  def show
-    @pet = Pet.find(params[:id])
-    authorize @pet
-  end
+  before_action :set_pet, only: [:show, :edit, :update]
 
   def new
     @pet = current_user.pets.new
@@ -20,9 +16,31 @@ class PetsController < ApplicationController
     end
   end
 
+  def edit
+    authorize @pet
+  end
+
+  def show
+    authorize @pet
+  end
+
+  def update
+    authorize @pet
+    if @pet.update(pet_params)
+      flash[:success] = "Pet updated!"
+      redirect_to pet_path(@pet)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def pet_params
     params.require(:pet).permit(:name, :description, :breed, :age)
+  end
+
+  def set_pet
+    @pet = Pet.find(params[:id])
   end
 end

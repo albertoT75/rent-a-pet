@@ -1,9 +1,14 @@
 <h1> Name: <%= @pet.name %></h1>
+
 <h2> Description: <%= @pet.description %></h2>
 <ul>
   <h1><p> Age: <%= @pet.age %></p></h1>
   <h1><p> Breed: <%= @pet.breed %></p></h1>
 </ul>
-
-
-<h3> <%= link_to "Back to my Pets", pets_path %></h3>
+<%#= cl_image_tag @pet.photo, height: 300, width: 400, crop: :fill %>
+<br>
+<br>
+<% if policy(@pet).edit? %>
+  <h2> <%= link_to "Edit my Pet", edit_pet_path %>  </h2>
+<% end %>
+<h3><%= link_to "Back to My Pets", pets_path %></h3>
