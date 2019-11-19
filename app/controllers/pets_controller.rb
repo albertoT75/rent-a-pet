@@ -1,5 +1,7 @@
 class PetsController < ApplicationController
+
   def show
+    @pet = Pets.find[params[:id]]
   end
 
   def new
@@ -10,7 +12,7 @@ class PetsController < ApplicationController
   def create
     @pet = current_user.pets.new(pet_params)
     authorize @pet
-    if pet.save
+    if @pet.save
       redirect_to @pet
     else
       render :new
@@ -22,5 +24,4 @@ class PetsController < ApplicationController
   def pet_params
     params.require(:pet).permit(:name, :decription, :breed, :age)
   end
-
 end
