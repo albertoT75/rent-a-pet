@@ -12,5 +12,5 @@ def valid_start_date?
 end
 
 def valid_end_date?
-  :end_period >= :start_period
+  :end_period > :start_period
 end
