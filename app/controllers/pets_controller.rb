@@ -6,12 +6,12 @@ class PetsController < ApplicationController
   end
 
   def new
-    @pet = current_user.pets.new
+    @pet = Pet.new
     authorize @pet
   end
 
   def create
-    @pet = current_user.pets.new(pet_params)
+    @pet = Pet.new(pet_params)
     authorize @pet
     if @pet.save
       redirect_to pet_path(@pet)
