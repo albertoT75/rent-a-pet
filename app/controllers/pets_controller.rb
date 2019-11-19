@@ -5,6 +5,11 @@ def edit
   @pet = Pet.find(params[:id])
 end
 
+def show
+  @pet = Pet.find(params[:id])
+  authorize @pet
+end
+
 def update
   @user = current_user
   @pet = @user.pet.find(params[:id])
