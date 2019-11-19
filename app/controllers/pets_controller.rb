@@ -1,5 +1,21 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  before_action :set_pet, only: [:show, :edit, :update]
+
+  def new
+    @pet = current_user.pets.new
+    authorize @pet
+  end
+
+  def create
+    @pet = current_user.pets.new(pet_params)
+    authorize @pet
+    if @pet.save
+      redirect_to pet_path(@pet)
+    else
+      render :new
+    end
+  end
+
   def edit
     authorize @pet
   end
@@ -31,7 +47,7 @@ class PetsController < ApplicationController
   private
 
   def pet_params
-    params.require(:pet).permit(:name, :description, :breed, :age, :photo)
+    params.require(:pet).permit(:name, :description, :breed, :age)
   end
 
   def set_pet
