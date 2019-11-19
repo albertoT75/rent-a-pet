@@ -16,7 +16,7 @@ def update
 end
 
 def pet_params
-  params.require(:pet).permit(:name, :description, :breed, :age)
+  params.require(:pet).permit(:name, :description, :breed, :age, :photo)
 end
 
 end
