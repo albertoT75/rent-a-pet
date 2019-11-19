@@ -12,7 +12,7 @@ def valid_start_date?
   true
 end
 
-# Implement the method
+# Implement the method example 
 def valid_end_date?
   true
 end
