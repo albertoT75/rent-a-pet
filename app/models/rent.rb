@@ -7,7 +7,7 @@ class Rent < ApplicationRecord
   validates :end_period, presence: true, if: :valid_end_date?
 end
 
-# Implement the method
+# Implement the method example 
 def valid_start_date?
   true
 end
