@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only: [:show, :edit, :update]
+  before_action :set_pet, only: [:show, :edit, :update, :destroy]
   def edit
     authorize @pet
   end
@@ -15,6 +15,16 @@ class PetsController < ApplicationController
       redirect_to pet_path(@pet)
     else
       render :edit
+    end
+  end
+
+  def destroy
+    authorize @pet
+    if @pet.delete
+      # TODO: change path to pets_path when index is done
+      redirect_to root_path
+    else
+      render :show
     end
   end
 
