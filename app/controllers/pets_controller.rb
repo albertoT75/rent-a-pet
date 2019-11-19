@@ -1,29 +1,30 @@
 class PetsController < ApplicationController
-
-def edit
-  @user = current_user
-  @pet = Pet.find(params[:id])
-  authorize @pet
-end
-
-def show
-  @pet = Pet.find(params[:id])
-  authorize @pet
-end
-
-def update
-  @pet = Pet.find(params[:id])
-  authorize @pet
-  if @pet.update(pet_params)
-    flash[:success] = "Pet updated!"
-    redirect_to pet_path(@pet)
-  else
-    render :edit
+  before_action :set_pet, only: [:show, :edit, :update]
+  def edit
+    authorize @pet
   end
-end
 
-def pet_params
-  params.require(:pet).permit(:name, :description, :breed, :age, :photo)
-end
+  def show
+    authorize @pet
+  end
 
+  def update
+    authorize @pet
+    if @pet.update(pet_params)
+      flash[:success] = "Pet updated!"
+      redirect_to pet_path(@pet)
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def pet_params
+    params.require(:pet).permit(:name, :description, :breed, :age, :photo)
+  end
+
+  def set_pet
+    @pet = Pet.find(params[:id])
+  end
 end

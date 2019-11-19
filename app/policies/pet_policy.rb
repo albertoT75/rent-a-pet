@@ -16,5 +16,4 @@ class PetPolicy < ApplicationPolicy
   def edit?
     update?
   end
-
 end

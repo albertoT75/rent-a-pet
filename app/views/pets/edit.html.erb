@@ -9,8 +9,8 @@
     <%= f.input :breed %>
     <%#= f.input :photo_cache, as: :hidden %>
   </div>
-<% if policy(pet).edit? %>
+
   <%= f.submit "Update", class: "btn btn-primary" %>
-<% end %>
+
 <p><%= link_to "Back to My Pets", pets_path %></p>
 <% end %>
