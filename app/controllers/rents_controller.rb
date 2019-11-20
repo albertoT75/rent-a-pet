@@ -1,21 +1,20 @@
 class RentsController < ApplicationController
-  before_action :set_pet, only: [:new, :create]
+  before_action :set_pet, only: [:new, :create, :dashboard]
 
   def new
     @rent = Rent.new
-    #@rent = current_user.pet.new
     authorize @rent
   end
 
   def create
     @rent = Rent.new(rent_params)
-    #@rent = current_user.pet.new(rent_params)
-    @pet.rent = @rent
     authorize @rent
+    @rent.pet_id = @pet.id
+    @rent.user = current_user
     if @rent.save
-      redirect_to pet_path(@pet)
+      redirect_to dashboard_path
     else
-      render :show
+      redirect_to pet_path(@pet)
     end
   end
 
