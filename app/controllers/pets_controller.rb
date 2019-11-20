@@ -1,6 +1,17 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
 
+  def index
+    @pets = policy_scope(Pet).geocoded #returns pets with coordinates
+
+    @markers = @pets.map do |pet|
+      {
+        lat: pet.latitude,
+        lng: pet.longitude
+      }
+    end
+  end
+
   def new
     @pet = current_user.pets.new
     authorize @pet
@@ -44,7 +55,7 @@ class PetsController < ApplicationController
   private
 
   def pet_params
-    params.require(:pet).permit(:name, :description, :breed, :age)
+    params.require(:pet).permit(:name, :description, :breed, :age, :address, :photo)
   end
 
   def set_pet
