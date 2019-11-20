@@ -1,14 +1,20 @@
 <h1> Name: <%= @pet.name %></h1>
 
-<h2> Description: <%= @pet.description %></h2>
+<h3> Description: <%= @pet.description %></h3>
 <ul>
-  <h1><p> Age: <%= @pet.age %></p></h1>
-  <h1><p> Breed: <%= @pet.breed %></p></h1>
+  <li>Age: <%= @pet.age %></li>
+  <li>Breed: <%= @pet.breed %></li>
 </ul>
 <%#= cl_image_tag @pet.photo, height: 300, width: 400, crop: :fill %>
 <br>
 <br>
 <% if policy(@pet).edit? %>
-  <h2> <%= link_to "Edit my Pet", edit_pet_path %>  </h2>
+  <p> <%= link_to "Edit my Pet", edit_pet_path %>  </p>
 <% end %>
-<h3><%= link_to "Back to My Pets", pets_path %></h3>
+<% if policy(@pet).destroy? %>
+  <p> <%= link_to "Delete my Pet", pet_path,
+    method: :delete,
+    data: {confirm: 'Proceed with deletion?' } %></p>
+<% end %>
+
+<p><%= link_to "Back to My Pets", pets_path %></p>
