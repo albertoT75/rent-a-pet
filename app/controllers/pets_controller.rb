@@ -1,6 +1,10 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
 
+  def index
+    @pets = policy_scope(Pet)
+  end
+
   def new
     @pet = current_user.pets.new
     authorize @pet
