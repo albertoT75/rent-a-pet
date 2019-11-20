@@ -1,13 +1,5 @@
-<%= simple_form_for(@pet) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :age %>
-    <%= f.input :breed %>
-  </div>
-  <%= f.submit "Create a pet", class: "btn btn-primary" %>
-  <p><%= link_to "Back to My Pets", pets_path %></p>
-  </div>
-<% end %>
+<h1>New Pet</h1>
+
+<%= render 'form', pet: @pet %>
+
+<%= link_to 'Back', pets_path %>
