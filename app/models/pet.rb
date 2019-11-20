@@ -9,4 +9,5 @@ class Pet < ApplicationRecord
   validates :breed, presence: true
   validates :age, presence: true
   validates :address, presence: true
+  mount_uploader :photo, PhotoUploader
 end
