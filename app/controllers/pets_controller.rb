@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only: [:show, :edit, :update]
+  before_action :set_pet, only: [:show, :edit, :update, :destroy]
 
   def index
     @pets = policy_scope(Pet)
@@ -36,6 +36,12 @@ class PetsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    authorize @pet
+    @pet.delete
+    redirect_to root_path
   end
 
   private
