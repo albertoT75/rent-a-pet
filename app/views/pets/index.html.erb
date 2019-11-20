@@ -4,7 +4,7 @@
  <p><%= link_to "Add Pet", new_pet_path%></p>
 
 
-
+<div class='container'>
 <% @pets.each do |pet| %>
   <%# if pet.rent.start_period < Date.now || pet.rent.end_period > Date.now %>
     <div class="card-general">
@@ -15,8 +15,10 @@
           </div>
          </div>
   <%# end %>
-      <% end %>
     </div>
+      <% end %>
+
+  </div>
 
 <div
   id="map"
