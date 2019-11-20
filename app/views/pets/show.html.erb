@@ -36,5 +36,8 @@
     method: :delete,
     data: {confirm: 'Proceed with deletion?' } %></p>
 <% end %>
+<% if policy(@pet).owner? %>
+  <p> <%= link_to "Rent this Pet", new_pet_rent_path(@pet) %>  </p>
+<% end %>
 
 <p><%= link_to "Back to My Pets", pets_path %></p>

@@ -1,0 +1,18 @@
+<h1>my pets</h1>
+
+<% if @rents_owned.empty? %>
+  <p><%= 'No ones rented your pet yet' %></p>
+<% else %>
+  <% @rents_owned.each do |rent| %>
+    <p><%= '---' %></p>
+    <p><%= rent.start_period %></p>
+    <p><%= rent.end_period %></p>
+    <p><%= '---' %></p>
+  <% end %>
+<% end %>
+
+<% @rents.each do |rent| %>
+  <p><%= rent.start_period %></p>
+  <p><%= rent.end_period %></p>
+    <p><%= '---' %></p>
+<% end %>

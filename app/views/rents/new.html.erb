@@ -1,0 +1,7 @@
+<h1>You are about to rent a pet</h1>
+
+<%= simple_form_for [@pet, @rent] do |f| %>
+  <%= f.input :start_period, as: :date %>
+  <%= f.input :end_period, as: :date %>
+  <%= f.submit "Rent", class: "btn btn-primary" %>
+<% end %>
