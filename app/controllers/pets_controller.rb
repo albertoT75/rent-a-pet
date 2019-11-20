@@ -36,12 +36,8 @@ class PetsController < ApplicationController
 
   def destroy
     authorize @pet
-    if @pet.delete
-      # TODO: change path to pets_path when index is done
-      redirect_to root_path
-    else
-      render :show
-    end
+    @pet.delete
+    redirect_to root_path
   end
 
   private
