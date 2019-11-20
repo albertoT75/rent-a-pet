@@ -1,13 +1,34 @@
-<h1> Name: <%= @pet.name %></h1>
+<p id="notice"><%= notice %></p>
 
-<h3> Description: <%= @pet.description %></h3>
-<ul>
-  <li>Age: <%= @pet.age %></li>
-  <li>Breed: <%= @pet.breed %></li>
-</ul>
-<%#= cl_image_tag @pet.photo, height: 300, width: 400, crop: :fill %>
-<br>
-<br>
+<p>
+  <strong>Name:</strong>
+  <%= @pet.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pet.description %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @pet.age %>
+</p>
+
+<p>
+  <strong>Breed:</strong>
+  <%= @pet.breed %>
+</p>
+
+<p>
+  <strong>photo:</strong>
+    <%= cl_image_tag @pet.photo, height: 300, width: 400, crop: :fill %>
+</p>
+
+<%# <p>
+  <strong><%= link_to 'Check Reviews', restaurant_reviews_path(@restaurant) </strong>
+</p> %>
+
 <% if policy(@pet).edit? %>
   <p> <%= link_to "Edit my Pet", edit_pet_path %>  </p>
 <% end %>
