@@ -22,6 +22,7 @@ class PetsController < ApplicationController
 
   def show
     authorize @pet
+    @rent = Rent.new
   end
 
   def update
