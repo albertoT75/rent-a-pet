@@ -1,12 +1,15 @@
 <!-- index.html.erb -->
 <h1> Available Pets </h1>
 
-<% @pets.each do |cocktail| %>
+ <p><%= link_to "Add Pet", new_pet_path%></p>
+
+<% @pets.each do |pet| %>
     <div class="card-product">
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg"/>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY3h_IaZAPmhvl2_YNpFUuM7QilyOMi_2nAFkv1Mlw_c3XhXRhrQ&s"/>
       <div class="card-product-infos">
         <h2><%= link_to pet.name, pet_path(pet)%></h2>
       </div>
     </div>
+    <% end %>
 
-  <p><%= link_to "Add Pet", new_pet_path%></p>
+

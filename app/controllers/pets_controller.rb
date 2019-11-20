@@ -2,7 +2,7 @@ class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update]
 
   def index
-    @pets = policy.scope(Pet)
+    @pets = policy_scope(Pet)
   end
 
   def new
