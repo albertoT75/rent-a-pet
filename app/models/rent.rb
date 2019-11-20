@@ -8,10 +8,21 @@ class Rent < ApplicationRecord
   validates :end_period, presence: true #, if: :valid_end_date?
 end
 
-# def valid_start_date?
-#   :start_period >= Date.today
+def valid_start_date?
+  self[:start_period] >= Date.today
+end
+
+def valid_end_date?
+  self[:end_period] > self[:start_period]
+end
+
+# def date_validation
+#   if self[:end_period] < self[:start_period]
+#     errors[:end_period] << "Error message"
+#     return false
+#   else
+#     return true
+#   end
 # end
 
-# def valid_end_date?
-#   :end_period > :start_period
-# end
+
