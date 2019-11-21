@@ -1,43 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @pet.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @pet.description %>
-</p>
-
-<p>
-  <strong>Age:</strong>
-  <%= @pet.age %>
-</p>
-
-<p>
-  <strong>Breed:</strong>
-  <%= @pet.breed %>
-</p>
-
-<p>
-  <strong>photo:</strong>
-    <%= cl_image_tag @pet.photo, height: 300, width: 400, crop: :fill %>
-</p>
+<div class="container show-container">
+  <p id="notice"><%= notice %></p>
+    <p>
+      <strong>Name:</strong>
+      <%= @pet.name %>
+    </p>
+    <p>
+      <strong>Description:</strong>
+      <%= @pet.description %>
+    </p>
+    <p>
+      <strong>Age:</strong>
+      <%= @pet.age %>
+    </p>
+    <%# <p>
+      <strong>Breed:</strong>
+      <%= @pet.breed %>
+    <%# </p> %>
+    <p>
+      <strong>photo:</strong>
+      <%= cl_image_tag @pet.photo, height: 200, width: 300, crop: :fill %>
+    </p>
 
 <%# <p>
   <strong><%= link_to 'Check Reviews', restaurant_reviews_path(@restaurant) </strong>
 </p> %>
-<% if policy(@pet).edit? %>
-  <p> <%= link_to "Edit my Pet", edit_pet_path %>  </p>
-<% end %>
-<% if policy(@pet).destroy? %>
-  <p> <%= link_to "Delete my Pet", pet_path,
-    method: :delete,
-    data: {confirm: 'Proceed with deletion?' } %></p>
-<% end %>
-<% if policy(@pet).owner? %>
-  <p> <%= link_to "Rent this Pet", new_pet_rent_path(@pet) %>  </p>
-<% end %>
+      <% if policy(@pet).edit? %>
+        <p> <%= link_to "Edit my Pet", edit_pet_path %>  </p>
+      <% end %>
+      <% if policy(@pet).destroy? %>
+        <p> <%= link_to "Delete my Pet", pet_path,
+          method: :delete,
+          data: {confirm: 'Proceed with deletion?' } %></p>
+      <% end %>
+      <% if policy(@pet).owner? %>
+        <p> <%= link_to "Rent this Pet", new_pet_rent_path(@pet) %>  </p>
+      <% end %>
 
-<p><%= link_to "Back to My Pets", pets_path %></p>
+      <p><%= link_to "Back to My Pets", pets_path %></p>
+</div>
