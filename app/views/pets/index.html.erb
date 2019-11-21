@@ -1,32 +1,31 @@
 <!-- index.html.erb -->
-  <h1> My Pets </h1>
-
-<div class='container home-container'>
-  <% @pets.each do |pet| %>
+      <h1> My Pets </h1>
+  <div class='container home-container'>
+      <% @pets.each do |pet| %>
   <%# if pet.rent.start_period < Date.now || pet.rent.end_period > Date.now %>
-    <div class="card-general">
-      <div class="card-product">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY3h_IaZAPmhvl2_YNpFUuM7QilyOMi_2nAFkv1Mlw_c3XhXRhrQ&s"/>
-          <div class="card-product-infos">
-            <h2><%= link_to pet.name, pet_path(pet)%></h2>
+        <div class="card-general">
+          <div class="card-product">
+           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY3h_IaZAPmhvl2_YNpFUuM7QilyOMi_2nAFkv1Mlw_c3XhXRhrQ&s"/>
+              <div class="card-product-infos">
+               <h2><%= link_to pet.name, pet_path(pet)%></h2>
+             </div>
           </div>
-         </div>
   <%# end %>
-    </div>
+        </div>
       <% end %>
   </div>
 
-<div class="container link-container">
+     <div class="container link-container">
       <p><%= link_to "Add Pet", new_pet_path%></p>
       <p><%= link_to "Home", root_path%></p>
-</div>
+     </div>
 
-  <div
-   id="map"
-    style="width: 80%;
-    height: 500px;
-  margin: 0 auto;"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-  ></div>
+     <div
+      id="map"
+      style="width: 80%;
+      height: 500px;
+      margin: 0 auto;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+     </div>
 

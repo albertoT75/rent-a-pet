@@ -1,6 +1,12 @@
-<h1>Edit Pet</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Edit Pet</h1>
+        <%= render 'form', pet: @pet %>
+        <%= link_to 'Show', @pet %> |
+        <%= link_to 'Back to My Pets', pets_path %>
+    </div>
+  </div>
+</div>
 
 
-<%= render 'form', pet: @pet %>
-<%= link_to 'Show', @pet %> |
-<%= link_to 'Back to My Pets', pets_path %>
