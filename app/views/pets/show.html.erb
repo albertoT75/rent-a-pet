@@ -29,9 +29,31 @@
   <strong>photo:</strong>
     <%= cl_image_tag @pet.photo, height: 300, width: 400, crop: :fill %>
 </p>
-<%# <p>
-  <strong><%= link_to 'Check Reviews', restaurant_reviews_path(@restaurant) </strong>
-</p> %>
+
+<h3>Reviews</h3>
+<% if @pet.reviews.empty? %>
+  <p>Be the first to leave a review</p>
+<% else %>
+  <ul class="list-group">
+    <% @pet.reviews.each do |review| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span class="badge badge-primary badge-pill">
+          <% counter = 0 %>
+          <% 5.times do %>
+            <i class="fa <%= review.rating > counter ? 'fa-star' : 'fa-star-o' %>"></i>
+            <% counter += 1 %>
+          <% end %>
+        </span>
+        <%= review.content %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if policy(@pet).owner? %>
+  <p> <%= render "reviews/new", pet: @pet, review: @review, condition: @condition %> </p>
+<% end %>
+
 <% if policy(@pet).edit? %>
   <p> <%= link_to "Edit my Pet", edit_pet_path %>  </p>
 <% end %>
