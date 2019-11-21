@@ -12,8 +12,5 @@ class RentPolicy < ApplicationPolicy
 
   def create?
     record.user != user
-
-    # record != user
-    #true
   end
 end
