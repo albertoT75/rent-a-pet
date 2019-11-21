@@ -3,7 +3,17 @@ class PetsController < ApplicationController
 
   def index
     @pets = policy_scope(Pet).geocoded #returns pets with coordinates
-
+    # Search bar start
+    if params[:query].present?
+      sql_query = "name ILIKE :query or breed ILIKE :query or address ILIKE :query"
+      @pets = @pets.where(sql_query, query: "%#{params[:query]}%")
+      if @pets.exists?
+        return @pets
+      else
+        redirect_to root_path(message: "Sorry not pet available")
+      end
+    end
+    # Search bar end
     @markers = @pets.map do |pet|
       {
         lat: pet.latitude,
