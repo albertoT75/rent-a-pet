@@ -1,7 +1,7 @@
-<h1>my pets</h1>
+<h1>My Pets Dashboard</h1>
 
 <% if @rents_owned.empty? %>
-  <p><%= 'No ones rented your pet yet' %></p>
+  <p><%= 'No one has rented your pets yet' %></p>
 <% else %>
   <% @rents_owned.each do |rent| %>
     <p><%= '---' %></p>
@@ -12,7 +12,10 @@
 <% end %>
 
 <% @rents.each do |rent| %>
-  <p><%= rent.start_period %></p>
-  <p><%= rent.end_period %></p>
+  <h2><%= "You succesfully rented this pet!" %></h2>
+  <p>Your rent starts: <%= rent.start_period %></p>
+  <p>Your rent ends: <%= rent.end_period %></p>
     <p><%= '---' %></p>
 <% end %>
+
+<p><%= link_to "Back to My Pets", pets_path %></p>
