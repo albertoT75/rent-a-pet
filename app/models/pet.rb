@@ -6,7 +6,7 @@ class Pet < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-  validates :breed, presence: true
+  # validates :breed, presence: true
   validates :age, presence: true
   validates :address, presence: true
   mount_uploader :photo, PhotoUploader

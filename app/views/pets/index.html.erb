@@ -5,7 +5,7 @@
  <p><%= link_to "Home", root_path%></p>
 
 
-<div class='container'>
+<div class='container home-container'>
 <% @pets.each do |pet| %>
   <%# if pet.rent.start_period < Date.now || pet.rent.end_period > Date.now %>
     <div class="card-general">
