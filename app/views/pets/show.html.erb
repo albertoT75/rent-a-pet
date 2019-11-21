@@ -46,7 +46,7 @@
 <% end %>
 
 <% if policy(@pet).owner? %>
-  <p> <%= render "reviews/new", pet: @pet, review: @review %> </p>
+  <p> <%= render "reviews/new", pet: @pet, review: @review, condition: @condition %> </p>
 <% end %>
 
 <% if policy(@pet).edit? %>

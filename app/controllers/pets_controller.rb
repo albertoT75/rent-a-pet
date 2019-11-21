@@ -35,6 +35,7 @@ class PetsController < ApplicationController
     authorize @pet
     @rent = Rent.new
     @review = Review.new
+    @condition = (Rent.where("pet_id = ? AND user_id = ?", params[:id], current_user.id).count > 0)
   end
 
   def update
