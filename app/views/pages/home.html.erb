@@ -18,18 +18,29 @@
   <p><%= params[:message] %></p>
 <% end %>
 
-<!-- the list of pets -->
+<!-- the list of pets  -->
   <div class="row">
     <% @pets.each do |pet| %>
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card">
-        <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path pet.photo, height: 300, width: 400, crop: :fill %>');"></div>
-          <div class="card-description">
-            <h2><%= pet.name %></h2>
-            <h3><%= pet.price %></h3>
+        <% if pet.photo.present? %>
+          <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path pet.photo, height: 300, width: 400, crop: :fill %>')"></div>
+            <div class="card-description">
+              <h2><%= pet.name %></h2>
+              <h3><%= pet.price %></h3>
+            </div>
           </div>
-        </div>
+          <% else %>
+            <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))"></div>
+            <div class="card-description">
+              <h2><%= pet.name %></h2>
+              <h3><%= pet.price %></h3>
+            </div>
+          </div>
+          <% end %>
       </div>
     <% end %>
   </div>
+
+
 
