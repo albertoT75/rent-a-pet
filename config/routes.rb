@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :pets do
     resources :rents, only: [:new, :create]
+    resources :reviews, only: [:create]
   end
   root to: 'pages#home'
   resources :rents, only: :index

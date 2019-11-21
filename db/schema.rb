@@ -44,10 +44,11 @@ ActiveRecord::Schema.define(version: 2019_11_20_105923) do
 
   create_table "reviews", force: :cascade do |t|
     t.text "content"
-    t.bigint "rent_id"
+    t.integer "rating"
+    t.bigint "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["rent_id"], name: "index_reviews_on_rent_id"
+    t.index ["pet_id"], name: "index_reviews_on_pet_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,5 +67,5 @@ ActiveRecord::Schema.define(version: 2019_11_20_105923) do
   add_foreign_key "pets", "users"
   add_foreign_key "rents", "pets"
   add_foreign_key "rents", "users"
-  add_foreign_key "reviews", "rents"
+  add_foreign_key "reviews", "pets"
 end
