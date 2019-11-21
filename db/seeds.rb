@@ -23,7 +23,7 @@ addresses = ["Leopoldstraße 50, Berlin",
 
 10.times do
   Pet.create(
-    name: Faker::Name.name,
+    name: Faker::GreekPhilosophers.name,
     address: addresses.pop,
     breed: Faker::Creature::Animal.name,
     age: rand(1..20),
