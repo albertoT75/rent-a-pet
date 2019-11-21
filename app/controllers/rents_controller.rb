@@ -14,7 +14,7 @@ class RentsController < ApplicationController
     if @rent.save
       redirect_to dashboard_path
     else
-      redirect_to pet_path(@pet)
+      render :new
     end
   end
 
