@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  before_action :set_pet, only: [:show, :edit, :update, :destroy, :allowed_to_create_reviews?]
 
   def index
     @pets = policy_scope(Pet).geocoded #returns pets with coordinates
@@ -34,6 +34,8 @@ class PetsController < ApplicationController
   def show
     authorize @pet
     @rent = Rent.new
+    @review = Review.new
+    @condition = (Rent.where("pet_id = ? AND user_id = ?", params[:id], current_user.id).count > 0)
   end
 
   def update
@@ -55,7 +57,7 @@ class PetsController < ApplicationController
   private
 
   def pet_params
-    params.require(:pet).permit(:name, :description, :breed, :age, :address, :photo)
+    params.require(:pet).permit(:name, :description, :breed, :age, :address, :photo, :price)
   end
 
   def set_pet
