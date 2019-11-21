@@ -4,6 +4,16 @@
     <p>Change your life and rent a little friend to keep you company.</p>
   </div>
 </div>
-
+<%= form_tag pets_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find an available pet by name, breed, or address"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+<% if params[:message].present? %>
+  <p><%= params[:message] %></p>
+<% end %>
+<!-- the list of pets -->
 <h1><%= link_to "My Pets", pets_path %></h1>
-

@@ -22,13 +22,16 @@ addresses = ["Leopoldstraße 50, Berlin",
                                   "Bornholmer Straße 2, Berlin"]
 
 10.times do
-  Pet.create(
+  p1 = Pet.create(
     name: Faker::GreekPhilosophers.name,
     address: addresses.pop,
     breed: Faker::Creature::Animal.name,
     age: rand(1..20),
     description: Faker::Quote.most_interesting_man_in_the_world,
-    user_id: USER.id )
+    user_id: USER.id,
+    price: rand(1..100)
+    )
+  p p1.errors.full_messages
  # puts "created pet number #{counter}"
 end
 
