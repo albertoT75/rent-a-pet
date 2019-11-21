@@ -2,8 +2,6 @@ class Rent < ApplicationRecord
   belongs_to :user
   belongs_to :pet
 
-  # validates :price, presence: true, numericality: { greater_than: 0 }
-  # price should be moved to Pet and removed from Rent
   validates :start_period, presence: true
   validates :end_period, presence: true
   validate :valid_dates?

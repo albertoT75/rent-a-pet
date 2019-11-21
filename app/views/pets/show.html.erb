@@ -13,7 +13,7 @@
       <strong>Age:</strong>
       <%= @pet.age %>
     </p>
-    <%# <p>
+    <% <p>
       <strong>Breed:</strong>
       <%= @pet.breed %>
     <%# </p> %>
@@ -22,9 +22,6 @@
       <%= cl_image_tag @pet.photo, height: 200, width: 300, crop: :fill %>
     </p>
 
-<%# <p>
-  <strong><%= link_to 'Check Reviews', restaurant_reviews_path(@restaurant) </strong>
-</p> %>
       <% if policy(@pet).edit? %>
         <p> <%= link_to "Edit my Pet", edit_pet_path %>  </p>
       <% end %>
@@ -37,5 +34,40 @@
         <p> <%= link_to "Rent this Pet", new_pet_rent_path(@pet) %>  </p>
       <% end %>
 
-      <p><%= link_to "Back to My Pets", pets_path %></p>
+
+  <h3>Reviews</h3>
+    <% if @pet.reviews.empty? %>
+      <p>Be the first to leave a review</p>
+    <% else %>
+     <ul class="list-group">
+       <% @pet.reviews.each do |review| %>
+         <li class="list-group-item d-flex justify-content-between align-items-center">
+           <span class="badge badge-primary badge-pill">
+           <% counter = 0 %>
+             <% 5.times do %>
+              <i class="fa <%= review.rating > counter ? 'fa-star' : 'fa-star-o' %>"></i>
+              <% counter += 1 %>
+             <% end %>
+          </span>
+            <%= review.content %>
+        </li>
+       <% end %>
+     </ul>
+    <% end %>
+
+  <% if policy(@pet).owner? %>
+    <p> <%= render "reviews/new", pet: @pet, review: @review, condition: @condition %> </p>
+  <% end %>
+
+  <% if policy(@pet).edit? %>
+    <p> <%= link_to "Edit my Pet", edit_pet_path %>  </p>
+  <% end %>
+  <% if policy(@pet).destroy? %>
+    <p> <%= link_to "Delete my Pet", pet_path, method: :delete, data: {confirm: 'Proceed with deletion?' } %></p>
+  <% end %>
+  <% if policy(@pet).owner? %>
+    <p> <%= link_to "Rent this Pet", new_pet_rent_path(@pet) %>  </p>
+  <% end %>
+
+     <p><%= link_to "Back to My Pets", pets_path %></p>
 </div>
