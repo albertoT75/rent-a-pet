@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
         redirect_to pet_path(@pet)
       end
     else
-      redirect_to pet_path(@pet), :notice => "You can not leave a review! You havent rentred this pet!"
+      redirect_to pet_path(@pet), :notice => "You can not leave a review! You have not rented this pet!"
     end
   end
 
