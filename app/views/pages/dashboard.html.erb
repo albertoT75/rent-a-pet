@@ -4,9 +4,9 @@
 <!-- the list of pets I own  -->
   <div class="container">
     <% if @rents_owned.empty? %>
-      <p>Nobody rented a pet from you yet</p>
+      <h3>Nobody rented a pet from you yet</h3>
     <% else %>
-      <p>Pets rented from me</p>
+      <h3>Pets rented from me</h3>
       <div class="row">
         <% @rents_owned.each do |rent| %>
           <div class="col-12 col-md-6 col-lg-4">
@@ -38,7 +38,7 @@
 
 <!-- the list of pets I rented  -->
   <div class="container">
-    <p>I rented these pets</p>
+    <h3>I rented these pets</h3>
     <div class="row">
       <% @rents.each do |rent| %>
         <div class="col-12 col-md-6 col-lg-4">
@@ -66,7 +66,7 @@
       <% end %>
     </div>
   </div>
-  <div class="container">
+  <div class="container actions" style="margin-top: 30px">
     <p><%= link_to "Search available pets", pets_path, class: "btn btn-primary" %></p>
   </div>
 </div>
