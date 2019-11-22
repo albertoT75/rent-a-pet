@@ -7,7 +7,6 @@
        <%= @pet.name %>
       </p>
       <p>
- <!-- <strong>photo:</strong> -->
         <%= cl_image_tag @pet.photo, height: 300, width: 400, crop: :fill %>
       </p>
       <p>
@@ -58,7 +57,7 @@
     <% if policy(@pet).edit? %>
       <div style="display: inline-block;">
         <p><%= link_to "Edit my Pet", edit_pet_path, class: "btn btn-primary" %></p>
-      </div>>
+      </div>
     <% end %>
     <% if policy(@pet).destroy? %>
       <div style="display: inline-block;">
