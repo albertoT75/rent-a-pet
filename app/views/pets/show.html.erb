@@ -56,17 +56,26 @@
       <p> <%= render "reviews/new", pet: @pet, review: @review, condition: @condition %> </p>
     <% end %>
     <% if policy(@pet).edit? %>
-      <p> <%= link_to "Edit my Pet", edit_pet_path %>  </p>
+      <div style="display: inline-block;">
+        <p><%= link_to "Edit my Pet", edit_pet_path, class: "btn btn-primary" %></p>
+      </div>>
     <% end %>
     <% if policy(@pet).destroy? %>
-      <p> <%= link_to "Delete my Pet", pet_path,
-      method: :delete,
-      data: {confirm: 'Proceed with deletion?' } %></p>
+      <div style="display: inline-block;">
+        <p> <%= link_to "Delete my Pet", pet_path,
+        method: :delete,
+        data: {confirm: 'Proceed with deletion?' },
+        class: "btn btn-primary" %></p>
+      </div>
     <% end %>
+    <div style="display: inline-block;">
     <% if policy(@pet).owner? %>
-      <p> <%= link_to "Rent this Pet", new_pet_rent_path(@pet) %>  </p>
+        <p> <%= link_to "Rent this Pet", new_pet_rent_path(@pet), class: "btn btn-primary" %>  </p>
     <% end %>
-    <p><%= link_to "Search available pets", pets_path %></p>
+    </div>
+    <div style="display: inline-block;">
+      <p><%= link_to "Search available pets", pets_path, class: "btn btn-primary" %></p>
+    </div>
     <div
       id="map"
       style="width: 100%;
