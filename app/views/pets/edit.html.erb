@@ -7,7 +7,9 @@
      </div>
     </div>
      <%= render 'form', pet: @pet %>
-     <p> <%= link_to 'Back to My Pets', pets_path %> </p>
+     <div style="display: inline-block;">
+       <p><%= link_to 'Back to My Pets', pets_path, class: "btn btn-primary"%> </p>
+     </div>
   </div>
 </div>
 
