@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :dashboard]
   def home
+    @pets = Pet.all
   end
 
   def dashboard
@@ -9,4 +10,3 @@ class PagesController < ApplicationController
     # raise
   end
 end
-
