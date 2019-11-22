@@ -1,7 +1,13 @@
-<h1>Editing Pet</h1>
+<%= render 'shared/navbar' %>
+<div class="container">
+  <div class="shadow p-3 mb-5 bg-white rounded">
+    <div class="row">
+     <div class="col-sm-12">
+      <h1>Editing Pet</h1>
+     </div>
+    </div>
+     <%= render 'form', pet: @pet %>
+     <p> <%= link_to 'Back to My Pets', pets_path %> </p>
+  </div>
+</div>
 
-
-<%= render 'form', pet: @pet %>
-
-<%= link_to 'Show', @pet %> |
-<%= link_to 'Back to My Pets', pets_path %>
