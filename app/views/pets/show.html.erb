@@ -5,27 +5,26 @@
        <strong>Name:</strong>
        <%= @pet.name %>
       </p>
-
       <p>
  <!-- <strong>photo:</strong> -->
-       <%= cl_image_tag @pet.photo, height: 300, width: 400, crop: :fill %>
+        <%= cl_image_tag @pet.photo, height: 300, width: 400, crop: :fill %>
       </p>
-
+      <p>
+        <strong>Address:</strong>
+        <%= @pet.address %>
+      </p>
       <p>
        <strong>Description:</strong>
        <%= @pet.description %>
       </p>
-
       <p>
        <strong>Age:</strong>
        <%= @pet.age %>
       </p>
-
       <p>
         <strong>Breed:</strong>
         <%= @pet.breed %>
       </p>
-
       <p>
         <strong>Price:</strong>
         <%= @pet.price %>
@@ -55,24 +54,17 @@
       <% if policy(@pet).owner? %>
         <p> <%= render "reviews/new", pet: @pet, review: @review, condition: @condition %> </p>
       <% end %>
-      <br>
-      <br>
       <% if policy(@pet).edit? %>
        <p> <%= link_to "Edit my Pet", edit_pet_path %>  </p>
       <% end %>
-      <br>
-      <br>
       <% if policy(@pet).destroy? %>
         <p> <%= link_to "Delete my Pet", pet_path,
           method: :delete,
           data: {confirm: 'Proceed with deletion?' } %></p>
       <% end %>
-      <br>
-      <br>
       <% if policy(@pet).owner? %>
         <p> <%= link_to "Rent this Pet", new_pet_rent_path(@pet) %>  </p>
       <% end %>
-      <br>
         <p><%= link_to "Search available pets", pets_path %></p>
    </div>
 </div>
