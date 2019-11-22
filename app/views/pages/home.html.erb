@@ -1,6 +1,8 @@
+
 <%= render 'shared/navbar' %>
    <% if user_signed_in? %>
     <div class="banner" style="background-image: url(<%= image_url('bannerphoto.png') %>);">
+
   <div class="container">
     <div class="container-text">
       <%= form_tag pets_path, method: :get do %>
@@ -9,7 +11,7 @@
           class: "form-control",
           placeholder: "Find an available pet by name, breed, or address"
           %>
-        <%= submit_tag "Search", class: "btn btn-primary" %>
+        <%= submit_tag "Search", class: "btn btn-primary", style:"margin-top:15px;" %>
       <% end %>
     </div>
   </div>
@@ -21,6 +23,7 @@
   <p>Change your life and rent a little friend to keep you company.</p>
 </div>
 <!-- the list of pets  -->
+<div class="container">
   <div class="row" id="cards-product">
     <% @pets.each do |pet| %>
       <div class="col-12 col-md-6 col-lg-4">
@@ -43,6 +46,7 @@
       </div>
     <% end %>
   </div>
+</div>
   <% else %>
   <header class="masthead" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_url('header-bg.jpg') %>);">
     <div class="container">
