@@ -1,25 +1,31 @@
 <!-- index.html.erb -->
 <h1> Available Pets </h1>
 
- <p><%= link_to "Add Pet", new_pet_path%></p>
- <p><%= link_to "Home", root_path%></p>
-
-
-<div class='container'>
-<% @pets.each do |pet| %>
-  <%# if pet.rent.start_period < Date.now || pet.rent.end_period > Date.now %>
-    <div class="card-general">
-      <div class="card-product">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY3h_IaZAPmhvl2_YNpFUuM7QilyOMi_2nAFkv1Mlw_c3XhXRhrQ&s"/>
-          <div class="card-product-infos">
-            <h2><%= link_to pet.name, pet_path(pet)%></h2>
+<div class="container">
+  <div class="row">
+    <% @pets.each do |pet| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card">
+        <% if pet.photo.present? %>
+          <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path pet.photo, height: 300, width: 400, crop: :fill %>')"></div>
+            <div class="card-description">
+              <h3><%= link_to pet.name, pet_path(pet)%></h3>
+              <h4><%= pet.price %></h4>
+            </div>
           </div>
-         </div>
-  <%# end %>
-    </div>
-      <% end %>
-
+          <% else %>
+            <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))"></div>
+            <div class="card-description">
+              <h3><%= link_to pet.name, pet_path(pet)%></h3>
+              <h4><%= pet.price %></h4>
+            </div>
+          </div>
+          <% end %>
+      </div>
+    <% end %>
   </div>
+</div>
+
 
 <div
   id="map"

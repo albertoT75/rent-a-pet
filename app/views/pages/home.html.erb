@@ -26,15 +26,15 @@
         <% if pet.photo.present? %>
           <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path pet.photo, height: 300, width: 400, crop: :fill %>')"></div>
             <div class="card-description">
-              <h2><%= pet.name %></h2>
-              <h3><%= pet.price %></h3>
+              <h3><%= link_to pet.name, pet_path(pet)%></h3>
+              <h4><%= pet.price %></h4>
             </div>
           </div>
           <% else %>
             <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))"></div>
             <div class="card-description">
-              <h2><%= pet.name %></h2>
-              <h3><%= pet.price %></h3>
+              <h3><%= link_to pet.name, pet_path(pet)%></h3>
+              <h4><%= pet.price %></h4>
             </div>
           </div>
           <% end %>
