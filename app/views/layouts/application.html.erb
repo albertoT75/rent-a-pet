@@ -11,10 +11,12 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
   <body id="page-top">
+    <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
     <%= yield %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>
+  <%= render 'shared/footer' %>
 </html>
