@@ -1,81 +1,78 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="shadow p-3 mb-5 bg-white rounded">
+    <p id="notice"><%= notice %></p>
+      <p>
+       <strong>Name:</strong>
+       <%= @pet.name %>
+      </p>
+      <p>
+ <!-- <strong>photo:</strong> -->
+        <%= cl_image_tag @pet.photo, height: 300, width: 400, crop: :fill %>
+      </p>
+      <p>
+        <strong>Address:</strong>
+        <%= @pet.address %>
+      </p>
+      <p>
+       <strong>Description:</strong>
+       <%= @pet.description %>
+      </p>
+      <p>
+       <strong>Age:</strong>
+       <%= @pet.age %>
+      </p>
+      <p>
+        <strong>Breed:</strong>
+        <%= @pet.breed %>
+      </p>
+      <p>
+        <strong>Price:</strong>
+        <%= @pet.price %>
+      </p>
+        <br>
+        <br>
+      <h3>Reviews</h3>
+        <% if @pet.reviews.empty? %>
+          <p>Be the first to leave a review</p>
+        <% else %>
+          <ul class="list-group">
+           <% @pet.reviews.each do |review| %>
+             <li class="list-group-item d-flex justify-content-between align-items-center">
+               <span class="badge badge-primary badge-pill">
+                 <% counter = 0 %>
+                 <% 5.times do %>
+                  <i class="fa <%= review.rating > counter ? 'fa-star' : 'fa-star-o' %>"></i>
+                  <% counter += 1 %>
+                 <% end %>
+               </span>
+               <%= review.content %>
+             </li>
+            <% end %>
+          </ul>
+        <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @pet.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @pet.address %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @pet.description %>
-</p>
-
-<p>
-  <strong>Age:</strong>
-  <%= @pet.age %>
-</p>
-
-<p>
-  <strong>Breed:</strong>
-  <%= @pet.breed %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @pet.price %>
-</p>
-
-<p>
-  <strong>photo:</strong>
-    <%= cl_image_tag @pet.photo, height: 300, width: 400, crop: :fill %>
-</p>
-
-<h3>Reviews</h3>
-<% if @pet.reviews.empty? %>
-  <p>Be the first to leave a review</p>
-<% else %>
-  <ul class="list-group">
-    <% @pet.reviews.each do |review| %>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <span class="badge badge-primary badge-pill">
-          <% counter = 0 %>
-          <% 5.times do %>
-            <i class="fa <%= review.rating > counter ? 'fa-star' : 'fa-star-o' %>"></i>
-            <% counter += 1 %>
-          <% end %>
-        </span>
-        <%= review.content %>
-      </li>
+    <% if policy(@pet).owner? %>
+      <p> <%= render "reviews/new", pet: @pet, review: @review, condition: @condition %> </p>
     <% end %>
-  </ul>
-<% end %>
+    <% if policy(@pet).edit? %>
+      <p> <%= link_to "Edit my Pet", edit_pet_path %>  </p>
+    <% end %>
+    <% if policy(@pet).destroy? %>
+      <p> <%= link_to "Delete my Pet", pet_path,
+      method: :delete,
+      data: {confirm: 'Proceed with deletion?' } %></p>
+    <% end %>
+    <% if policy(@pet).owner? %>
+      <p> <%= link_to "Rent this Pet", new_pet_rent_path(@pet) %>  </p>
+    <% end %>
+    <p><%= link_to "Search available pets", pets_path %></p>
+    <div
+      id="map"
+      style="width: 100%;
+      height: 600px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    ></div>
+  </div>
+</div>
 
-<% if policy(@pet).owner? %>
-  <p> <%= render "reviews/new", pet: @pet, review: @review, condition: @condition %> </p>
-<% end %>
-
-<% if policy(@pet).edit? %>
-  <p> <%= link_to "Edit my Pet", edit_pet_path %>  </p>
-<% end %>
-<% if policy(@pet).destroy? %>
-  <p> <%= link_to "Delete my Pet", pet_path,
-    method: :delete,
-    data: {confirm: 'Proceed with deletion?' } %></p>
-<% end %>
-<% if policy(@pet).owner? %>
-  <p> <%= link_to "Rent this Pet", new_pet_rent_path(@pet) %>  </p>
-<% end %>
-
-<p><%= link_to "Back to My Pets", pets_path %></p>
-<div
-  id="map"
-  style="width: 100%;
-  height: 600px;"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
