@@ -1,8 +1,9 @@
-<div class="container">
-  <div class="shadow p-3 mb-5 bg-white rounded">
-    <div class="row">
-     <div class="col-sm-12"
-      <h2>Sign up</h2>
+<div class="jumbotron vertical-center" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_url('header-bg.jpg') %>);">
+  <div class="container">
+    <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="row">
+      <div class="col-sm-12">
+        <h2 style="color: #fed136; text-align:center;">Sign Up</h2>
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
           <div class="form-inputs">
@@ -10,11 +11,14 @@
            <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
            <%= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
           </div>
-         <div class="form-actions">
+          <div class="form-actions btn-primary" style="text-align: center; width:100px;">
            <%= f.button :submit, "Sign up" %>
          </div>
         <% end %>
        <%= render "devise/shared/links" %>
-     </div>
-   </div>
- </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
