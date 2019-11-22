@@ -1,25 +1,26 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0)), url(<%= image_url('logo') %>);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0)), url(<%= image_url('bannerphoto') %>);">
   <div class="container">
     <div class="container-text">
 
-      <p>Change your life and rent a little friend to keep you company.</p>
-        <%= form_tag pets_path, method: :get do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Find an available pet by name, breed, or address"
+      <%= form_tag pets_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find an available pet by name, breed, or address"
           %>
-          <%= submit_tag "Search", class: "btn btn-primary" %>
-        <% end %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 </div>
 <% if params[:message].present? %>
   <p><%= params[:message] %></p>
 <% end %>
-
+<div class="center-text">
+  <p>Change your life and rent a little friend to keep you company.</p>
+</div>
 <!-- the list of pets  -->
-  <div class="row">
+  <div class="row" id="cards-product">
     <% @pets.each do |pet| %>
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card">
