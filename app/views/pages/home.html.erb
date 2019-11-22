@@ -1,6 +1,47 @@
-<%= render 'shared/navbar' %>
    <% if user_signed_in? %>
-<p> tatata <p>
+    <div class="banner" style="background-image: url(<%= image_url('bannerphoto.png') %>);">
+  <div class="container">
+    <div class="container-text">
+      <%= form_tag pets_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find an available pet by name, breed, or address"
+          %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% if params[:message].present? %>
+  <p><%= params[:message] %></p>
+<% end %>
+<div class="center-text">
+  <p>Change your life and rent a little friend to keep you company.</p>
+</div>
+<!-- the list of pets  -->
+  <div class="row" id="cards-product">
+    <% @pets.each do |pet| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card">
+        <% if pet.photo.present? %>
+          <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path pet.photo, height: 300, width: 400, crop: :fill %>')"></div>
+            <div class="card-description">
+              <h3><%= link_to pet.name, pet_path(pet)%></h3>
+              <h4><%= pet.price %></h4>
+            </div>
+          </div>
+          <% else %>
+            <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))"></div>
+            <div class="card-description">
+              <h3><%= link_to pet.name, pet_path(pet)%></h3>
+              <h4><%= pet.price %></h4>
+            </div>
+          </div>
+          <% end %>
+      </div>
+    <% end %>
+  </div>
   <% else %>
   <header class="masthead" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_url('header-bg.jpg') %>);">
     <div class="container">
@@ -147,38 +188,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-4">
-          <ul class="list-inline social-buttons">
-            <li class="list-inline-item">
-              <a href="#">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-        </div>
-      </div>
-    </div>
-  </footer>
-
   <!-- Modal 1 -->
   <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
