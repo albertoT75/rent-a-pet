@@ -46,6 +46,7 @@ class PetsController < ApplicationController
     @rent = Rent.new
     @review = Review.new
     @condition = (Rent.where("pet_id = ? AND user_id = ?", params[:id], current_user.id).count > 0)
+    @markers = [{lat: @pet.latitude, lng: @pet.longitude}]
   end
 
   def update

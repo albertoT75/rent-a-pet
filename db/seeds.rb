@@ -11,15 +11,15 @@ Pet.destroy_all
 USER = User.create(username: "Johan Cruyff", email: "JC@rap.com", password: "123456")
 
 addresses = ["Leopoldstraße 50, Berlin",
-                                  "Brandenburgische Straße 22, Berlin",
-                                  "Genslerstraße 21, Berlin",
-                                  "Leopoldßtraße 82, Berlin",
-                                  "Holteistraße 18, Berlin",
-                                  "Weisbachstraß2 1-4, Berlin",
-                                  "Schulweg, Berlin",
-                                  "Lichtenberger Straße, Berlin",
-                                  "Jacobystraße 5-6, Berlin",
-                                  "Bornholmer Straße 2, Berlin"]
+            "Brandenburgische Straße 22, Berlin",
+            "Genslerstraße 21, Berlin",
+            "Leopoldßtraße 82, Berlin",
+            "Holteistraße 18, Berlin",
+            "Weisbachstraße 1-4, Berlin",
+            "Schulweg, Berlin",
+            "Lichtenberger Straße, Berlin",
+            "Jacobystraße 5-6, Berlin",
+            "Bornholmer Straße 2, Berlin"]
 
 10.times do
   p1 = Pet.create(
