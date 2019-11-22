@@ -1,13 +1,46 @@
 <h1>My Pets Dashboard</h1>
 
-<!-- the list of pets I own  -->
 <div class="container">
-  <div class="row">
+<!-- the list of pets I own  -->
+  <div class="container">
     <% if @rents_owned.empty? %>
       <p>Nobody rented a pet from you yet</p>
     <% else %>
       <p>Pets rented from me</p>
-      <% @rents_owned.each do |rent| %>
+      <div class="row">
+        <% @rents_owned.each do |rent| %>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card">
+            <% if rent.pet.photo.present? %>
+              <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path rent.pet.photo, height: 300, width: 400, crop: :fill %>')"></div>
+                <div class="card-description">
+                  <h3><%= link_to rent.pet.name, pet_path(rent.pet)%></h3>
+                  <h4><%= rent.pet.price %></h4>
+                  <p>Rent starts: <%= rent.start_period %></p>
+                  <p>Rent ends: <%= rent.end_period %></p>
+                </div>
+              </div>
+              <% else %>
+                <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))"></div>
+                <div class="card-description">
+                  <h3><%= link_to rent.pet.name, pet_path(rent.pet)%></h3>
+                  <h4><%= rent.pet.price %></h4>
+                  <p>Rent starts: <%= rent.start_period %></p>
+                  <p>Rent ends: <%= rent.end_period %></p>
+                </div>
+              </div>
+              <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+<!-- the list of pets I rented  -->
+  <div class="container">
+    <p>I rented these pets</p>
+    <div class="row">
+      <% @rents.each do |rent| %>
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card">
           <% if rent.pet.photo.present? %>
@@ -15,8 +48,8 @@
               <div class="card-description">
                 <h3><%= link_to rent.pet.name, pet_path(rent.pet)%></h3>
                 <h4><%= rent.pet.price %></h4>
-                <p>Rent starts: <%= rent.start_period %></p>
-                <p>Rent ends: <%= rent.end_period %></p>
+                <p>Your rent starts: <%= rent.start_period %></p>
+                <p>Your rent ends: <%= rent.end_period %></p>
               </div>
             </div>
             <% else %>
@@ -31,39 +64,9 @@
             <% end %>
         </div>
       <% end %>
-    <% end %>
+    </div>
+  </div>
+  <div class="container">
+    <p><%= link_to "Search available pets", pets_path, class: "btn btn-primary" %></p>
   </div>
 </div>
-
-<!-- the list of pets I rented  -->
-<div class="container">
-  <p>I rented these pets</p>
-  <div class="row">
-    <% @rents.each do |rent| %>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-        <% if rent.pet.photo.present? %>
-          <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path rent.pet.photo, height: 300, width: 400, crop: :fill %>')"></div>
-            <div class="card-description">
-              <h3><%= link_to rent.pet.name, pet_path(rent.pet)%></h3>
-              <h4><%= rent.pet.price %></h4>
-              <p>Your rent starts: <%= rent.start_period %></p>
-              <p>Your rent ends: <%= rent.end_period %></p>
-            </div>
-          </div>
-          <% else %>
-            <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))"></div>
-            <div class="card-description">
-              <h3><%= link_to rent.pet.name, pet_path(rent.pet)%></h3>
-              <h4><%= rent.pet.price %></h4>
-              <p>Rent starts: <%= rent.start_period %></p>
-              <p>Rent ends: <%= rent.end_period %></p>
-            </div>
-          </div>
-          <% end %>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<p><%= link_to "Search available pets", pets_path %></p>
