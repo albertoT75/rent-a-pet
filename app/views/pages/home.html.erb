@@ -1,43 +1,213 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_url('bannerphoto.jpg') %>);">
-  <div class="container">
-    <div class="container-text">
-      <h1 color="white">Rent A Pet</h1>
-      <p>Change your life and rent a little friend to keep you company.</p>
-        <%= form_tag pets_path, method: :get do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Find an available pet by name, breed, or address"
-          %>
-          <%= submit_tag "Search", class: "btn btn-primary" %>
-        <% end %>
+<%= render 'shared/navbar' %>
+   <% if user_signed_in? %>
+<p> tatata <p>
+  <% else %>
+  <header class="masthead" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_url('header-bg.jpg') %>);">
+    <div class="container">
+      <div class="intro-text">
+        <div class="intro-lead-in">Change your life - get a little friend to keep you company!</div>
+        <div class="intro-heading text-uppercase">Rent A Pet</div>
+        <%= link_to "Login/Sign up", new_user_session_path, class: "btn btn-primary btn-xl text-uppercase js-scroll-trigger" %>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section class="page-section" id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Services</h2>
+          <h3 class="section-subheading text-muted">We help you to find a new friend or a temporary accomodation for your own pet</h3>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-dog fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Rent a pet</h4>
+          <p class="text-muted">Find a new fluffy company</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-paw fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Host a pet</h4>
+          <p class="text-muted">Travel a lot? Find people, who would take care about your loved one!</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-users fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Meet new people</h4>
+          <p class="text-muted">Meet new people, who own pets and share your interests!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Grid -->
+  <section class="bg-light page-section" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Our animals</h2>
+          <h3 class="section-subheading text-muted">Existing friends on our website!</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="https://source.unsplash.com/1600x900/?labrador" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Harry</h4>
+            <p class="text-muted">Very friendly!</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="https://source.unsplash.com/1600x900/?cat" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Tina</h4>
+            <p class="text-muted">Likes to play!</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="https://source.unsplash.com/1600x900/?dog" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Bobik</h4>
+            <p class="text-muted">Likes to sleep. </p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="https://source.unsplash.com/1600x900/?cat" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Shu</h4>
+            <p class="text-muted">Eats a lot!</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="https://source.unsplash.com/1600x900/?pet" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Vasil</h4>
+            <p class="text-muted">Very friendly!</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="https://source.unsplash.com/1600x900/?dog" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Ihor</h4>
+            <p class="text-muted">Likes to play.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal 1 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Harry</h2>
+                <p class="item-intro text-muted">Doggy!</p>
+                <img class="img-fluid d-block mx-auto" src="img/portfolio/01-full.jpg" alt="">
+                <p>I am very friendly!</p>
+                <ul class="list-inline">
+                  <li>Date of Birth: January 2017</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<% if params[:message].present? %>
-  <p><%= params[:message] %></p>
 <% end %>
-
-<!-- the list of pets  -->
-  <div class="row">
-    <% @pets.each do |pet| %>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-        <% if pet.photo.present? %>
-          <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path pet.photo, height: 300, width: 400, crop: :fill %>')"></div>
-            <div class="card-description">
-              <h3><%= link_to pet.name, pet_path(pet)%></h3>
-              <h4><%= pet.price %></h4>
-            </div>
-          </div>
-          <% else %>
-            <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))"></div>
-            <div class="card-description">
-              <h3><%= link_to pet.name, pet_path(pet)%></h3>
-              <h4><%= pet.price %></h4>
-            </div>
-          </div>
-          <% end %>
-      </div>
-    <% end %>
-  </div>
