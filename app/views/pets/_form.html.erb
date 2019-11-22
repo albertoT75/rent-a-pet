@@ -1,7 +1,8 @@
 
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
+  <div class="shadow p-3 mb-5 bg-white rounded">
+    <div class="row">
+     <div class="col-sm-12">
        <%= simple_form_for(@pet) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -30,5 +31,6 @@
        </div>
       <% end %>
     </div>
+   </div>
   </div>
 </div>
